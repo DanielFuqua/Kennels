@@ -7,6 +7,14 @@ import "./location/Location.css";
 import Customer from "./customer/Customer";
 import Employee from "./employee/Employee";
 import Location from "./location/Location";
+import { LocationProvider } from "./location/LocationProvider";
+import LocationList from "./location/LocationList";
+import AnimalList from "./animal/AnimalList";
+import { AnimalProvider } from "./animal/AnimalProvider";
+import { CustomerProvider } from "./customer/CustomerProvider";
+import CustomerList from "./customer/CustomerList";
+import { EmployeeProvider } from "./employee/EmployeeProvider";
+import EmployeeList from "./employee/EmployeeList";
 
 export default () => (
   <>
@@ -19,25 +27,25 @@ export default () => (
     </address>
 
     <h2>Animals</h2>
-    <article className="animal">
-      <Animal />
-      <Animal />
-      <Animal />
-    </article>
-    <article className="employee">
-      <Employee />
-      <Employee />
-      <Employee />
-    </article>
-    <article className="location">
-      <Location />
-      <Location />
-    </article>
-    <article className="customer">
-      <Customer />
-      <Customer />
-      <Customer />
-      <Customer />
-    </article>
+    <AnimalProvider>
+      <LocationProvider>
+        <CustomerProvider>
+          <AnimalList />
+        </CustomerProvider>
+      </LocationProvider>
+    </AnimalProvider>
+
+    <h2>Employees</h2>
+    <EmployeeProvider>
+      <EmployeeList />
+    </EmployeeProvider>
+    <h2>Locations</h2>
+    <LocationProvider>
+      <LocationList />
+    </LocationProvider>
+    <h2>Customers</h2>
+    <CustomerProvider>
+      <CustomerList />
+    </CustomerProvider>
   </>
 );
