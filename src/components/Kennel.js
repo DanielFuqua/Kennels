@@ -1,12 +1,8 @@
 import React from "react";
-import Animal from "./animal/Animal";
 import "./animal/Animal.css";
 import "./employee/Employee.css";
 import "./customer/Customer.css";
 import "./location/Location.css";
-import Customer from "./customer/Customer";
-import Employee from "./employee/Employee";
-import Location from "./location/Location";
 import { LocationProvider } from "./location/LocationProvider";
 import LocationList from "./location/LocationList";
 import AnimalList from "./animal/AnimalList";
@@ -37,12 +33,16 @@ export default () => (
 
     <h2>Employees</h2>
     <EmployeeProvider>
-      <EmployeeList />
+      <LocationProvider>
+        <EmployeeList />
+      </LocationProvider>
     </EmployeeProvider>
+
     <h2>Locations</h2>
     <LocationProvider>
       <LocationList />
     </LocationProvider>
+
     <h2>Customers</h2>
     <CustomerProvider>
       <CustomerList />
