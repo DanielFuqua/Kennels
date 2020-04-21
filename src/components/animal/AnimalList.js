@@ -7,12 +7,24 @@ import { CustomerContext } from "../customer/CustomerProvider";
 
 export default () => {
   const { animals } = useContext(AnimalContext);
+  const { locations } = useContext(LocationContext);
+  const { customers } = useContext(CustomerContext);
 
   return (
     <div className="animals">
-      {animals.map((anim) => (
-        <Animal key={anim.id} animal={anim} />
-      ))}
+      {animals.map((anim) => {
+        const owner = customers.find((c) => c.id === anim.customerId);
+        const clinic = locations.find((l) => l.id === anim.locationId);
+
+        return (
+          <Animal
+            key={anim.id}
+            location={clinic}
+            customer={owner}
+            animal={anim}
+          />
+        );
+      })}
     </div>
   );
 };
