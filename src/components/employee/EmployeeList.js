@@ -1,20 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./Employee.css";
 import { EmployeeContext } from "./EmployeeProvider";
 import Employee from "./Employee";
 import { LocationContext } from "../location/LocationProvider";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import EmployeeForm from "./EmployeeForm";
 
 export default () => {
   const { employees } = useContext(EmployeeContext);
   const { locations } = useContext(LocationContext);
 
-  return (
-    <div className="employees">
-      {employees.map((empl) => {
-        const clinic = locations.find((l) => l.id === empl.locationId);
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
 
-        return <Employee key={empl.id} location={clinic} employee={empl} />;
-      })}
-    </div>
+  return (
+    <>
+      <h2>Employees</h2>
+
+      <div className="fakeLink href" onClick={toggle}>
+        New Employee
+      </div>
+
+      <ul className="employees">
+        {employees.map((employee) => {
+          const loc = locations.find((l) => l.id === employee.locationId);
+
+          return (
+            <Employee key={employee.id} location={loc} employee={employee} />
+          );
+        })}
+      </ul>
+
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>New Employee</ModalHeader>
+        <ModalBody>
+          <EmployeeForm toggler={toggle} />
+        </ModalBody>
+      </Modal>
+    </>
   );
 };
