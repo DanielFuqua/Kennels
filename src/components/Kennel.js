@@ -3,6 +3,7 @@ import "./animal/Animal.css";
 import "./employee/Employee.css";
 import "./customer/Customer.css";
 import "./location/Location.css";
+import "./Kennel.css";
 import { LocationProvider } from "./location/LocationProvider";
 import LocationList from "./location/LocationList";
 import AnimalList from "./animal/AnimalList";
@@ -24,28 +25,18 @@ export default () => (
 
     <h2>Animals</h2>
     <AnimalProvider>
-      <LocationProvider>
-        <CustomerProvider>
-          <AnimalList />
-        </CustomerProvider>
-      </LocationProvider>
+      <EmployeeProvider>
+        <LocationProvider>
+          <CustomerProvider>
+            <AnimalList />
+            <EmployeeList />
+            <h2>Locations</h2>
+            <LocationList />
+            <h2>Customers</h2>
+            <CustomerList />
+          </CustomerProvider>
+        </LocationProvider>
+      </EmployeeProvider>
     </AnimalProvider>
-
-    <h2>Employees</h2>
-    <EmployeeProvider>
-      <LocationProvider>
-        <EmployeeList />
-      </LocationProvider>
-    </EmployeeProvider>
-
-    <h2>Locations</h2>
-    <LocationProvider>
-      <LocationList />
-    </LocationProvider>
-
-    <h2>Customers</h2>
-    <CustomerProvider>
-      <CustomerList />
-    </CustomerProvider>
   </>
 );

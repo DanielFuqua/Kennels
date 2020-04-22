@@ -9,7 +9,6 @@ export default () => {
   const { animals } = useContext(AnimalContext);
   const { locations } = useContext(LocationContext);
   const { customers } = useContext(CustomerContext);
-
   return (
     <div className="animals">
       {animals.map((anim) => {
