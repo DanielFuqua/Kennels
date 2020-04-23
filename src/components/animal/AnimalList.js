@@ -31,7 +31,7 @@ export default () => {
     <>
       <Button onClick={toggle}>Make Appointment</Button>
       <div className="animals">
-        {animals.map((anim) => {
+        {filteredAnimals.map((anim) => {
           const owner = customers.find((c) => c.id === anim.customerId);
           const clinic = locations.find((l) => l.id === anim.locationId);
 
