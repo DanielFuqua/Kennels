@@ -12,6 +12,7 @@ import { CustomerProvider } from "./customer/CustomerProvider";
 import CustomerList from "./customer/CustomerList";
 import { EmployeeProvider } from "./employee/EmployeeProvider";
 import EmployeeList from "./employee/EmployeeList";
+import AnimalSearch from "./animal/AnimalSearch";
 
 export default () => (
   <>
@@ -29,6 +30,7 @@ export default () => (
         <LocationProvider>
           <CustomerProvider>
             <AnimalList />
+            <AnimalSearch />
             <EmployeeList />
             <h2>Locations</h2>
             <LocationList />

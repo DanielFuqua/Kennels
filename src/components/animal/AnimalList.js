@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AnimalContext } from "./AnimalProvider";
 import Animal from "./Animal";
 import "./Animal.css";
@@ -8,9 +8,22 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AnimalForm from "./AnimalForm";
 
 export default () => {
-  const { animals } = useContext(AnimalContext);
+  const { animals, searchTerm, setAnimals } = useContext(AnimalContext);
   const { locations } = useContext(LocationContext);
   const { customers } = useContext(CustomerContext);
+
+  const [filteredAnimals, setFiltered] = useState([]);
+
+  useEffect(() => {
+    const subset = animals.filter((animal) =>
+      animal.name.toLowerCase().includes(searchTerm)
+    );
+    setFiltered(subset);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    setFiltered(animals);
+  }, [animals]);
 
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -18,7 +31,7 @@ export default () => {
     <>
       <Button onClick={toggle}>Make Appointment</Button>
       <div className="animals">
-        {animals.map((anim) => {
+        {filteredAnimals.map((anim) => {
           const owner = customers.find((c) => c.id === anim.customerId);
           const clinic = locations.find((l) => l.id === anim.locationId);
 
