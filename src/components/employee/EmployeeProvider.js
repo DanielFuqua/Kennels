@@ -28,8 +28,18 @@ export const EmployeeProvider = (props) => {
     }).then(getEmployees);
   };
 
+  const updateEmployee = (employee) => {
+    return fetch(`http://localhost:8088/employees/${employee.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(employee),
+    }).then(getEmployees);
+  };
+
   /*
-        Load all animals when the component is mounted. Ensure that
+        Load all employees when the component is mounted. Ensure that
         an empty array is the second argument to avoid infinite loop.
     */
   useEffect(() => {
@@ -45,6 +55,7 @@ export const EmployeeProvider = (props) => {
       value={{
         employees,
         addEmployee,
+        updateEmployee,
       }}
     >
       {props.children}

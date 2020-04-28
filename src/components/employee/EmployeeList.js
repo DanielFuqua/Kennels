@@ -17,9 +17,7 @@ export default () => {
     <>
       <h2>Employees</h2>
 
-      <div className="fakeLink href" onClick={toggle}>
-        New Employee
-      </div>
+      <button onClick={toggle}>Make Appointment</button>
 
       <ul className="employees">
         {employees.map((employee) => {

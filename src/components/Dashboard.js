@@ -29,11 +29,11 @@ export default () => {
   );
 
   const showEmployees = () => (
-    <EmployeeProvider>
-      <LocationProvider>
+    <LocationProvider>
+      <EmployeeProvider>
         <EmployeeList />
-      </LocationProvider>
-    </EmployeeProvider>
+      </EmployeeProvider>
+    </LocationProvider>
   );
 
   /*
